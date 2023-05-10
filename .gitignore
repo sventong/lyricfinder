@@ -1,5 +1,7 @@
 csv_to_json.py
 song_id_importer.py
 upload.py
+vectorizer.py
 /data
 __pycache__
+.vercel

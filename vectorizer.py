@@ -4,7 +4,7 @@ import json
 import pandas as pd
 from tqdm.notebook import tqdm
 
-model = SentenceTransformer('T-Systems-onsite/german-roberta-sentence-transformer-v2')
+model = SentenceTransformer('T-Systems-onsite/cross-en-de-roberta-sentence-transformer')
 
 df = pd.read_json('data/lyrics.json')
 
