@@ -1,0 +1,41 @@
+
+{% extends "home.html" %}
+
+
+{% block search %}
+{{search_str}}
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Song Name</th>
+                <th>Artist</th>
+                <th>Language</th>
+                <th>Genre</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for r in result %}    
+            <tr>
+                <td>{{r.song_name}}</td>
+                <td>{{r.artist}}</td>
+                <td>{{r.artist}}</td>
+                <td>{{r.artist}}</td>
+            </tr>
+            <tr>
+                <td>{{r.lyrics}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    
+
+    </table>
+    
+
+</div>
+
+{% endblock %}
+

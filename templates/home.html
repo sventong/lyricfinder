@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="site-wrapper m-5">
+    <div class="site-wrapper-inner">    
+        <div class="container">
+            <h3 class="">Learn German with Majan Lyrics</h3>
+                <nav>
+                    <ul class="navbar navbar-dark bg-dark">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="/docs">API View</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+               
+
+            <form class="form-inline" action="search" method="GET">
+                <input name="q" class="form-control block m-1" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-warning btn-block m-1" type="submit">Search</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% block search %}
+{% endblock %}
+
+{% endblock %}
