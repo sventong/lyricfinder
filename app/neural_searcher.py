@@ -7,7 +7,7 @@ class NeuralSearcher:
     def __init__(self, collection_name):
         self.collection_name = collection_name
         # Initialize encoder model
-        self.model = SentenceTransformer('T-Systems-onsite/german-roberta-sentence-transformer-v2', device='cpu')
+        self.model = SentenceTransformer('T-Systems-onsite/cross-en-de-roberta-sentence-transformer', device='cpu')
         # initialize Qdrant client
         self.qdrant_client = QdrantClient(
             url="https://02442ebd-ee10-476b-8a02-72c6bfa78340.us-east-1-0.aws.cloud.qdrant.io:6333",
