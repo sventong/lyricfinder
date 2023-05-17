@@ -1,44 +1,51 @@
-# File: main.py
-
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 from pathlib import Path
+from neural_searcher import NeuralSearcher
 
-# That is the file where NeuralSearcher is stored
-from app.neural_searcher import NeuralSearcher
-
+# Base, parent folder where all the files are in
 BASE_DIR = Path(__file__).resolve().parent.parent
-print(r'base----------',BASE_DIR)
 
+# Initialize FastAPI app and jinja2 Templates
 app = FastAPI()
-
+app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory=str(Path(BASE_DIR, 'templates')))
 
-# Create an instance of the neural searcher
-neural_searcher = NeuralSearcher(collection_name='majan_songs')
+# Init NeuralSearcher from qdrant cloud
+neural_searcher = NeuralSearcher(collection_name='twenty')
+
 
 @app.get("/")
 def home(request: Request):
     return templates.TemplateResponse("home.html", {
-        "request": request
+        "request": request,
+        "genre": ["pop", "rap", "rb", "rock"]
     })
 
 @app.get("/search")
-def search(request: Request, q: str):
+# search request returns the best matches by the neural_searcher
+def search(request: Request, q: str, genre: str):
+    # print(neural_searcher.search(text=q, genre=genre))
+    if genre == "" and q == "":
+        return templates.TemplateResponse("home.html", {
+            "request": request,
+            "genre": ["pop", "rap", "rb", "rock"]
+        })   
+    
+    if genre == "":
+        genre = ["pop", "rap", "rb", "rock"]
+    else:
+        genre = [genre]
     return templates.TemplateResponse("search.html", {
         "request": request,
-        "somevar": 2,
-        "search_str": q,
-        "result": neural_searcher.search(text=q)
+        "genre": ["pop", "rap", "rb", "rock"],
+        "result": neural_searcher.search(text=q, genre=genre)
     })
-
-# @app.get("/api/search")
-# def search_startup(q: str):
-#     return {
-#         "result": neural_searcher.search(text=q)
-#     }
 
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app.main:app, host="0.0.0.0", port=8000)
+    import os
+    port = int(os.environ.get('PORT', 5000))
+    uvicorn.run(app, host="0.0.0.0", port=port)

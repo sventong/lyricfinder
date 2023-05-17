@@ -3,5 +3,7 @@ song_id_importer.py
 upload.py
 vectorizer.py
 /data
+/preprocessing
 __pycache__
 .vercel
+data.json

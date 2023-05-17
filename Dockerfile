@@ -5,5 +5,7 @@ COPY . ./
 RUN pip install --no-cache-dir -r requirements.txt
 COPY ./app /code/app
 COPY ./templates /code/templates
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+ENTRYPOINT [ "python" ]
+CMD ["app/main.py" ]
+
 # CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 app.main:app

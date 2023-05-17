@@ -3,6 +3,7 @@
 **/song_id_importer.py
 **/upload.py
 data
+preprocessing
 **/__pycache__
 fly.toml
 Dockerfile
@@ -12,3 +13,4 @@ README.md
 *.pyd
 __pycache__
 .pytest_cache
+data.json

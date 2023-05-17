@@ -3,7 +3,6 @@
 
 
 {% block search %}
-{{search_str}}
 
 <div class="container">
     <table class="table">
@@ -19,13 +18,16 @@
         <tbody>
             {% for r in result %}    
             <tr>
-                <td>{{r.song_name}}</td>
+                <td>{{r.title}}</td>
                 <td>{{r.artist}}</td>
-                <td>{{r.artist}}</td>
-                <td>{{r.artist}}</td>
+                <td>{{r.tag}}</td>
+                <td>{{r.language}}</td>
             </tr>
             <tr>
                 <td>{{r.lyrics}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
             {% endfor %}
         </tbody>
